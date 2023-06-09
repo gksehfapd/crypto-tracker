@@ -60,20 +60,75 @@ function Price({ coinId }: ChartProps) {
 		['tickers', coinId],
 		() => fetchCoinTickers(coinId)
 	)
-	const dataDirect = infoData?.quotes.USD || null
+	console.log(infoData)
+
 	return (
 		<div>
 			{infoLoading ? null : (
 				<Container>
-					<PriceInfo>15분 전보다 : {dataDirect?.percent_change_15m} %</PriceInfo>
-					<PriceInfo>30분 전보다 : {dataDirect?.percent_change_30m} %</PriceInfo>
-					<PriceInfo>1시간 전보다 : {dataDirect?.percent_change_1h} %</PriceInfo>
-					<PriceInfo>6시간 전보다 : {dataDirect?.percent_change_6h} %</PriceInfo>
-					<PriceInfo>12시간 전보다 : {dataDirect?.percent_change_12h} %</PriceInfo>
-					<PriceInfo>24시간 전보다 : {dataDirect?.percent_change_24h} %</PriceInfo>
-					<PriceInfo>7일 전보다 : {dataDirect?.percent_change_7d} %</PriceInfo>
-					<PriceInfo>30일 전보다 : {dataDirect?.percent_change_30d} %</PriceInfo>
-					<PriceInfo>1년 전보다 : {dataDirect?.percent_change_1y} %</PriceInfo>
+					<PriceInfo>
+						15분 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_15m ? (
+							<span>infoData?.quotes.USD.percent_change_15m</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						30분 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_30m ? (
+							<span>infoData?.quotes.USD.percent_change_30m</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						1시간 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_1h ? (
+							<span>infoData?.quotes.USD.percent_change_1h</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						6시간 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_6h ? (
+							<span>infoData?.quotes.USD.percent_change_6h</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						12시간 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_12h ? (
+							<span>infoData?.quotes.USD.percent_change_12h</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						24시간 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_24h ? (
+							<span>infoData?.quotes.USD.percent_change_24h</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						7일 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_7d ? (
+							<span>infoData?.quotes.USD.percent_change_7d</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						30일 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_30d ? (
+							<span>infoData?.quotes.USD.percent_change_30d</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
+					<PriceInfo>
+						1년 전보다 :{' '}
+						{infoData?.quotes.USD.percent_change_1y ? (
+							<span>infoData?.quotes.USD.percent_change_1y</span>
+						) : null}{' '}
+						%
+					</PriceInfo>
 				</Container>
 			)}
 		</div>
