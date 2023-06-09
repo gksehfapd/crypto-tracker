@@ -41,9 +41,18 @@ interface PriceData {
 }
 
 const Container = styled.div`
-	padding: 0px 20px;
 	max-width: 480px;
 	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+`
+
+const PriceInfo = styled.div`
+	background-color: white;
+	text-align: center;
+	padding: 24px;
+	border-radius: 8px;
 `
 
 function Price({ coinId }: ChartProps) {
@@ -54,15 +63,19 @@ function Price({ coinId }: ChartProps) {
 	const dataDirect = infoData?.quotes.USD
 	return (
 		<div>
-			<div>15분 전보다 : {dataDirect?.percent_change_15m}</div>
-			<div>30분 전보다 : {dataDirect?.percent_change_30m}</div>
-			<div>1시간 전보다 : {dataDirect?.percent_change_1h}</div>
-			<div>6시간 전보다 : {dataDirect?.percent_change_6h}</div>
-			<div>12시간 전보다 : {dataDirect?.percent_change_12h}</div>
-			<div>24시간 전보다 : {dataDirect?.percent_change_24h}</div>
-			<div>7일 전보다 : {dataDirect?.percent_change_7d}</div>
-			<div>30일 전보다 : {dataDirect?.percent_change_30d}</div>
-			<div>1년 전보다 : {dataDirect?.percent_change_1y}</div>
+			{infoLoading ? null : (
+				<Container>
+					<PriceInfo>15분 전보다 : {dataDirect?.percent_change_15m} %</PriceInfo>
+					<PriceInfo>30분 전보다 : {dataDirect?.percent_change_30m} %</PriceInfo>
+					<PriceInfo>1시간 전보다 : {dataDirect?.percent_change_1h} %</PriceInfo>
+					<PriceInfo>6시간 전보다 : {dataDirect?.percent_change_6h} %</PriceInfo>
+					<PriceInfo>12시간 전보다 : {dataDirect?.percent_change_12h} %</PriceInfo>
+					<PriceInfo>24시간 전보다 : {dataDirect?.percent_change_24h} %</PriceInfo>
+					<PriceInfo>7일 전보다 : {dataDirect?.percent_change_7d} %</PriceInfo>
+					<PriceInfo>30일 전보다 : {dataDirect?.percent_change_30d} %</PriceInfo>
+					<PriceInfo>1년 전보다 : {dataDirect?.percent_change_1y} %</PriceInfo>
+				</Container>
+			)}
 		</div>
 	)
 }

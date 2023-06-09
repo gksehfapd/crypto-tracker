@@ -19,27 +19,25 @@ interface IHistorical {
 	market_cap: number
 }
 
+interface INewData {
+	x: Date
+	y: number[]
+}
+
 function Chart({ coinId }: ChartProps) {
+	let candleData: INewData[] = []
 	const isDark = useRecoilValue(isDarkAtom)
 	const { isLoading, data } = useQuery<IHistorical[]>(['ohlcv', coinId], () =>
 		fetchCoinHistory(coinId)
 	)
-	// console.log(data)
-	// const newData = data?.map((e) => Object.values(e))
-	// console.log(newData)
-	// const chartDate = data?.map((e) => e.time_open)
-	// console.log(chartDate)
-	// const chartData = data?.map((e) => [e.open, e.high, e.low, e.close])
-	// console.log(chartData)
-	// let obj: { x: string }
-	// let dateArr: Object[]
-	// let hello = chartDate?.map((e) => dateArr.push((obj.x = e)))
-	// console.log(hello)
-	// let obj = chartDate?.reduce((accumulator, value, index) => {
-	// 	return { ...accumulator, ['x' + index]: value }
-	// }, {})
+	const xData = data?.map((obj) => new Date(obj.time_open))
+	const yData = data?.map((obj) => [obj.open, obj.high, obj.low, obj.close])
 
-	// console.log(obj)
+	if (xData && yData) {
+		for (let i = 0; i < xData.length; i++) {
+			candleData.push({ x: xData[i], y: yData[i] })
+		}
+	}
 
 	return (
 		<div>
@@ -99,32 +97,7 @@ function Chart({ coinId }: ChartProps) {
 					<ApexChart
 						series={[
 							{
-								data: [
-									{
-										x: new Date(1538778600000),
-										y: [6629.81, 6650.5, 6623.04, 6633.33]
-									},
-									{
-										x: new Date(1538780400000),
-										y: [6632.01, 6643.59, 6620, 6630.11]
-									},
-									{
-										x: new Date(1538782200000),
-										y: [6630.71, 6648.95, 6623.34, 6635.65]
-									},
-									{
-										x: new Date(1538784000000),
-										y: [6635.65, 6651, 6629.67, 6638.24]
-									},
-									{
-										x: new Date(1538785800000),
-										y: [6638.24, 6640, 6620, 6624.47]
-									},
-									{
-										x: new Date(1538787600000),
-										y: [6624.53, 6636.03, 6621.68, 6624.31]
-									}
-								]
+								data: candleData
 							}
 						]}
 						type="candlestick"
