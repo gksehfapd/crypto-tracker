@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchCoinTickers } from './api'
 import styled from 'styled-components'
-import { useState } from 'react'
 
 interface ChartProps {
 	coinId: string
@@ -61,38 +60,27 @@ function Price({ coinId }: ChartProps) {
 		['tickers', coinId],
 		() => fetchCoinTickers(coinId)
 	)
-
-	return (
-		<div>
-			{infoLoading ? null : (
-				<Container>
-					<PriceInfo>
-						15분 전보다 : {infoData?.quotes.USD?.percent_change_15m} %
-					</PriceInfo>
-					<PriceInfo>
-						30분 전보다 : {infoData?.quotes.USD?.percent_change_30m} %
-					</PriceInfo>
-					<PriceInfo>
-						1시간 전보다 : {infoData?.quotes.USD?.percent_change_1h} %
-					</PriceInfo>
-					<PriceInfo>
-						6시간 전보다 : {infoData?.quotes.USD?.percent_change_6h} %
-					</PriceInfo>
-					<PriceInfo>
-						12시간 전보다 : {infoData?.quotes.USD?.percent_change_12h} %
-					</PriceInfo>
-					<PriceInfo>
-						24시간 전보다 : {infoData?.quotes.USD?.percent_change_24h} %
-					</PriceInfo>
-					<PriceInfo>7일 전보다 : {infoData?.quotes.USD?.percent_change_7d} %</PriceInfo>
-					<PriceInfo>
-						30일 전보다 : {infoData?.quotes.USD?.percent_change_30d} %
-					</PriceInfo>
-					<PriceInfo>1년 전보다 : {infoData?.quotes.USD?.percent_change_1y} %</PriceInfo>
-				</Container>
-			)}
-		</div>
-	)
+	if (infoData?.quotes.USD !== undefined) {
+		const dataDirect = infoData?.quotes.USD
+		return (
+			<div>
+				{infoLoading ? null : (
+					<Container>
+						<PriceInfo>15분 전보다 : {dataDirect?.percent_change_15m} %</PriceInfo>
+						<PriceInfo>30분 전보다 : {dataDirect?.percent_change_30m} %</PriceInfo>
+						<PriceInfo>1시간 전보다 : {dataDirect?.percent_change_1h} %</PriceInfo>
+						<PriceInfo>6시간 전보다 : {dataDirect?.percent_change_6h} %</PriceInfo>
+						<PriceInfo>12시간 전보다 : {dataDirect?.percent_change_12h} %</PriceInfo>
+						<PriceInfo>24시간 전보다 : {dataDirect?.percent_change_24h} %</PriceInfo>
+						<PriceInfo>7일 전보다 : {dataDirect?.percent_change_7d} %</PriceInfo>
+						<PriceInfo>30일 전보다 : {dataDirect?.percent_change_30d} %</PriceInfo>
+						<PriceInfo>1년 전보다 : {dataDirect?.percent_change_1y} %</PriceInfo>
+					</Container>
+				)}
+			</div>
+		)
+	} else {
+		return null
+	}
 }
-
 export default Price

@@ -70,7 +70,7 @@ function App() {
 				<HelmetProvider>
 					<Router />
 				</HelmetProvider>
-				{/* <ReactQueryDevtools initialIsOpen={true} /> */}
+				<ReactQueryDevtools initialIsOpen={true} />
 			</ThemeProvider>
 		</>
 	)
