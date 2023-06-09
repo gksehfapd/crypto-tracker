@@ -30,7 +30,7 @@ function Chart({ coinId }: ChartProps) {
 	const { isLoading, data } = useQuery<IHistorical[]>(['ohlcv', coinId], () =>
 		fetchCoinHistory(coinId)
 	)
-	const xData = data?.map((obj) => new Date(obj.time_open))
+	const xData = data?.map((obj) => new Date(Number(obj.time_open) * 1000))
 	const yData = data?.map((obj) => [obj.open, obj.high, obj.low, obj.close])
 
 	if (xData && yData) {

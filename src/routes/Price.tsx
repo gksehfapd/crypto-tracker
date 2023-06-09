@@ -60,12 +60,12 @@ function Price({ coinId }: ChartProps) {
 		['tickers', coinId],
 		() => fetchCoinTickers(coinId)
 	)
-	const dataDirect = infoData?.quotes.USD
+	const dataDirect = infoData?.quotes.USD || null
 	return (
 		<div>
 			{infoLoading ? null : (
 				<Container>
-					{/* <PriceInfo>15분 전보다 : {dataDirect?.percent_change_15m} %</PriceInfo>
+					<PriceInfo>15분 전보다 : {dataDirect?.percent_change_15m} %</PriceInfo>
 					<PriceInfo>30분 전보다 : {dataDirect?.percent_change_30m} %</PriceInfo>
 					<PriceInfo>1시간 전보다 : {dataDirect?.percent_change_1h} %</PriceInfo>
 					<PriceInfo>6시간 전보다 : {dataDirect?.percent_change_6h} %</PriceInfo>
@@ -73,7 +73,7 @@ function Price({ coinId }: ChartProps) {
 					<PriceInfo>24시간 전보다 : {dataDirect?.percent_change_24h} %</PriceInfo>
 					<PriceInfo>7일 전보다 : {dataDirect?.percent_change_7d} %</PriceInfo>
 					<PriceInfo>30일 전보다 : {dataDirect?.percent_change_30d} %</PriceInfo>
-					<PriceInfo>1년 전보다 : {dataDirect?.percent_change_1y} %</PriceInfo> */}
+					<PriceInfo>1년 전보다 : {dataDirect?.percent_change_1y} %</PriceInfo>
 				</Container>
 			)}
 		</div>
