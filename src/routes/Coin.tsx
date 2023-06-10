@@ -19,8 +19,6 @@ interface RouteState {
 	name: string
 }
 
-interface ICoinProps {}
-
 const Container = styled.div`
 	padding: 0px 20px;
 	max-width: 480px;
@@ -155,7 +153,7 @@ interface PriceData {
 	}
 }
 
-function Coin({}: ICoinProps) {
+function Coin() {
 	const history = useHistory()
 	const clickGoback = () => {
 		history.push('/')
@@ -209,12 +207,7 @@ function Coin({}: ICoinProps) {
 						</OverviewItem>
 						<OverviewItem>
 							<span>Price:</span>
-							<span>
-								${' '}
-								{tickersData?.quotes.USD
-									? tickersData?.quotes.USD.price.toFixed(3)
-									: null}
-							</span>
+							<span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
 						</OverviewItem>
 					</Overview>
 					<Description>{infoData?.description}</Description>
