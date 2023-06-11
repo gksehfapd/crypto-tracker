@@ -1,6 +1,6 @@
 import Router from './Router'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { HelmetProvider } from 'react-helmet-async'
 import { darkTheme, lightTheme } from './theme'
 import { useRecoilValue } from 'recoil'
@@ -70,7 +70,7 @@ function App() {
 				<HelmetProvider>
 					<Router />
 				</HelmetProvider>
-				<ReactQueryDevtools initialIsOpen={true} />
+				{/* <ReactQueryDevtools initialIsOpen={true} /> */}
 			</ThemeProvider>
 		</>
 	)

@@ -168,10 +168,6 @@ function Coin() {
 	const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
 		['tickers', coinId],
 		() => fetchCoinTickers(coinId)
-		// {
-		// 	refetchInterval: 5000
-		// }
-		//5초마다 갱신 / coinpaprika는 한시간에 60번까지만 요청을 받을 수 있음. 한달 25k
 	)
 	const setDarkAtom = useSetRecoilState(isDarkAtom)
 	const isDark = useRecoilValue(isDarkAtom)
